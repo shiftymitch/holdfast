@@ -1,115 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Carousel 1
-    let index1 = 0;
-    const images1 = document.querySelectorAll('#carousel1 img');
-    const totalImages1 = images1.length;
-    let intervalId1 = null; // Store the interval ID for carousel 1
 
-    function showImage1(idx) {
-        images1.forEach((image, i) => {
-            if (i === idx) {
-                image.style.display = 'block';
-            } else {
-                image.style.display = 'none';
-            }
-        });
-    }
-
-    function nextImage1() {
-        index1 = (index1 + 1) % totalImages1;
-        showImage1(index1);
-        restartInterval1();
-    }
-
-    function prevImage1() {
-        index1 = (index1 - 1 + totalImages1) % totalImages1;
-        showImage1(index1);
-        restartInterval1();
-    }
-
-    function jumpToPhoto1(idx) {
-        index1 = idx;
-        showImage1(index1);
-        restartInterval1();
-    }
-
-    function restartInterval1() {
-        clearInterval(intervalId1); // Clear the previous interval
-        intervalId1 = setInterval(nextImage1, 3000); // Restart the interval
-    }
-
-    // Automatically advance to the next image every 3 seconds
-    restartInterval1();
-
-    // Show the first image initially
-    showImage1(index1);
-
-    // Add event listeners to navigation arrows for carousel 1
-    document.getElementById('prevBtn1').addEventListener('click', function() {
-        prevImage1();
-        clearInterval(intervalId1); // Stop automatic rotation for carousel 1
-    });
-    document.getElementById('nextBtn1').addEventListener('click', function() {
-        nextImage1();
-        clearInterval(intervalId1); // Stop automatic rotation for carousel 1
-    });
-
-    // Carousel 2
-    let index2 = 0;
-    const images2 = document.querySelectorAll('#carousel2 img');
-    const totalImages2 = images2.length;
-    let intervalId2 = null; // Store the interval ID for carousel 2
-
-    function showImage2(idx) {
-        images2.forEach((image, i) => {
-            if (i === idx) {
-                image.style.display = 'block';
-            } else {
-                image.style.display = 'none';
-            }
-        });
-    }
-
-    function nextImage2() {
-        index2 = (index2 + 1) % totalImages2;
-        showImage2(index2);
-        restartInterval2();
-    }
-
-    function prevImage2() {
-        index2 = (index2 - 1 + totalImages2) % totalImages2;
-        showImage2(index2);
-        restartInterval2();
-    }
-
-    function jumpToPhoto2(idx) {
-        index2 = idx;
-        showImage2(index2);
-        restartInterval2();
-    }
-
-    function restartInterval2() {
-        clearInterval(intervalId2); // Clear the previous interval
-        intervalId2 = setInterval(nextImage2, 3000); // Restart the interval
-    }
-
-    // Automatically advance to the next image every 3 seconds
-    restartInterval2();
-
-    // Show the first image initially
-    showImage2(index2);
-
-    // Add event listeners to navigation arrows for carousel 2
-    document.getElementById('prevBtn2').addEventListener('click', function() {
-        prevImage2();
-        clearInterval(intervalId2); // Stop automatic rotation for carousel 2
-    });
-    document.getElementById('nextBtn2').addEventListener('click', function() {
-        nextImage2();
-        clearInterval(intervalId2); // Stop automatic rotation for carousel 2
-    });
-
-    // Add or remove the navbar-sticky class based on the scroll position
+    // Navigation Bar
     const navbar = document.querySelector('.navbar-main');
     const navbarHeight = navbar.offsetHeight;
     const scrollThreshold = navbar.offsetTop + navbarHeight;
@@ -120,5 +11,68 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             navbar.classList.remove('navbar-sticky');
         }
+    });
+
+    // Photo Carousel Controls
+    let index = 0;
+    const images = document.querySelectorAll('#carousel img');
+    const totalImages = images.length;
+    let intervalId = null; // Store the interval ID
+
+    function showImage(idx) {
+        index = idx;
+        images.forEach((image, i) => {
+            if (i === idx) {
+                image.style.display = 'block';
+            } else {
+                image.style.display = 'none';
+            }
+        });
+        restartInterval(); // Restart the interval after showing the image
+    }
+
+    function nextImage() {
+        index = (index + 1) % totalImages;
+        showImage(index);
+    }
+
+    function prevImage() {
+        index = (index - 1 + totalImages) % totalImages;
+        showImage(index);
+    }
+
+    function restartInterval() {
+        clearInterval(intervalId); // Clear the previous interval
+        intervalId = setInterval(nextImage, 3000); // Restart the interval
+    }
+
+    // Automatically advance to the next image every 3 seconds
+    restartInterval();
+
+    // Show the first image initially
+    showImage(index);
+
+    // Add event listeners to navigation arrows
+    document.getElementById('prevBtn').addEventListener('click', prevImage);
+    document.getElementById('nextBtn').addEventListener('click', nextImage);
+});
+
+
+// Expand Service Details
+document.addEventListener('DOMContentLoaded', function () {
+    const serviceItems = document.querySelectorAll('.service-item');
+
+    serviceItems.forEach(item => {
+        item.addEventListener('click', function () {
+            // Toggle the visibility of details for clicked service
+            item.querySelector('.service-details').classList.toggle('hidden');
+
+            // Hide details for other services
+            serviceItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.querySelector('.service-details').classList.add('hidden');
+                }
+            });
+        });
     });
 });
