@@ -11,8 +11,8 @@ html {
 
 body {
     background-image: url('../img/background.jpg'); /* Adjust with your actual background image */
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-size: auto;
+    background-repeat: repeat-y;
     background-position: center;
     background-attachment: fixed;
 }
@@ -29,6 +29,7 @@ h2 {
 .carousel {
     overflow: hidden;
     position: relative;
+    height: 600px;
 }
 .carousel img {
     width: 100%;
@@ -94,9 +95,26 @@ h2 {
     top: 0; /* Position at the top of the viewport */
     width: 50%; /* Take up full width */
     z-index: 1000; /* Ensure it's above other content */
-    left: 25%; /* Center the navbar horizontally */8;
+    left: 25%; /* Center the navbar horizontally */
 }
 
 #contact {
     background-color: #302b28;
+}
+
+.service-item {
+    cursor: pointer;
+    text-align: center;
+}
+
+
+/* mobile background image */
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll;
+        background-image: url('../img/background-mobile.jpg');
+    }
+    .carousel {
+        height: 225px;
+    }
 }
