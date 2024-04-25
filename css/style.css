@@ -117,4 +117,7 @@ h2 {
     .carousel {
         height: 225px;
     }
+    .navbar-sticky {
+        position: relative;
+    }
 }
