@@ -36,6 +36,12 @@ h2 {
     display: block;
 }
 
+#carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .prev, .next {
     position: absolute;
     top: 50%;
