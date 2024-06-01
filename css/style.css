@@ -120,9 +120,11 @@ h2 {
         background-attachment: scroll;
         background-image: url('../img/background-mobile.jpg');
     }
+    
     .carousel {
         height: 225px;
     }
+
     .navbar-sticky {
         position: relative;
     }
